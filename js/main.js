@@ -38,5 +38,4 @@ fetch('https://gtlng.github.io/mvheustreu/js/htmlcomponents/header.html').then(f
 
 var headID = document.head.id;
     console.log(headID);
-    document.getElementById(headID).className += " pure-menu-selected";
-    document.getElementById(headID).innerHTML = 'Test';
+    document.getElementById(headID+"_nav").className += " pure-menu-selected";
