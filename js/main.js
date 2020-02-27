@@ -30,10 +30,13 @@ fetch('https://gtlng.github.io/mvheustreu/js/htmlcomponents/header.html').then(f
             document.getElementById('toggle').classList.toggle('x');
         });
     })(this, this.document);
-    var headID = document.head.id;
-    console.log(headID);
-    document.getElementById(headID).className += " pure-menu-selected";
+    
 }).catch(function (err) {
     // There was an error
     console.warn('Something went wrong.', err);
 });
+
+var headID = document.head.id;
+    console.log(headID);
+    document.getElementById(headID).className += " pure-menu-selected";
+    document.getElementById(headID).innerHTML = 'Test';
