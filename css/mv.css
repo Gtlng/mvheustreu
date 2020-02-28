@@ -14,12 +14,14 @@
 #page-container {
     position: relative;
     min-height: 100vh;
-  }
-  
-  #content-wrap {
-    padding-bottom: 3.5rem;    /* Footer height */
-    padding-top: 1.5rem;    /* Menu height - margin of content-head */
-  }
+}
+
+#content-wrap {
+    padding-bottom: 3.5rem;
+    /* Footer height */
+    padding-top: 1.5rem;
+    /* Menu height - margin of content-head */
+}
 
 body {
     color: #5e6869;
@@ -30,6 +32,10 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
+    color: darkgrey;
+}
+
+.footer a {
     color: darkgrey;
 }
 
