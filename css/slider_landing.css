@@ -139,14 +139,26 @@
     opacity: 1;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 89.9em) {
     .cb-slideshow li div h3 {
         font-size: 8rem;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 79.9em) {
     .cb-slideshow li div h3 {
-        font-size: 5rem;
+        font-size: 7rem;
+    }
+}
+
+@media screen and (max-width: 63.9em) {
+    .cb-slideshow li div h3 {
+        font-size: 6.5rem;
+    }
+}
+
+@media screen and (max-width: 47.9em) {
+    .cb-slideshow li div h3 {
+        font-size: 3.8rem;
     }
 }
