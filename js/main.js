@@ -27,7 +27,7 @@ fetch('https://gtlng.github.io/mvheustreu/js/htmlcomponents/footer.html').then(f
 }).then(function (html) {
 
     // This is the HTML from our response as a text string
-    // console.log(html);
+    // Füllt den Footer mit dem abgerufenen HTML-Text
     document.getElementById("mv-footer").innerHTML = html;
     //newHTML = html;
 }).catch(function (err) {
