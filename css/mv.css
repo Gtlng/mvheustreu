@@ -52,6 +52,7 @@
 @media (min-width: 48em){
 
 .content-center, .content {
+/* good idea?! */
     padding-left: 2em;
     padding-right: 2em;
 }
