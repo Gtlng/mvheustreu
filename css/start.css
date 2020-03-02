@@ -22,6 +22,13 @@ h5,
 h6,
 label {
     color: #34495e;
+    /* Anpassungen für MV: */
+    margin-bottom: .7em;
+    margin-top: 1.7em;
+}
+
+p {
+    margin-block-start: .7em;
 }
 
 .pure-img-responsive {
@@ -111,6 +118,11 @@ a.pure-button-primary {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 2em 0 1em;
+}
+
+/* Little bit more margin to the main content */
+h2.content-head {
+    margin-bottom: 1.3em;
 }
 
 /* This is a modifier class used when the content-head is inside a ribbon */

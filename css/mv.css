@@ -49,6 +49,10 @@
     font-weight: lighter;
 }
 
+.pure-table{
+    hyphens: auto;
+}
+
 @media (min-width: 48em){
 
 .content-center, .content {
