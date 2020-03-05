@@ -36,8 +36,6 @@ a:hover, a:focus {
     /* Bei mehrspaltigem Text: Blocksatz, Silbentrennung, kein Rand oben unten für mobile Ansichten */
     text-align: justify;
     hyphens: auto;
-    padding-left: 2em;
-    padding-right: 2em;
     padding-top: 0em;
     padding-bottom: 0em;
 }
@@ -61,6 +59,7 @@ a:hover, a:focus {
 
 .pure-table{
     hyphens: auto;
+    font-size: 14px;
 }
 
 @media (min-width: 48em){
@@ -73,6 +72,16 @@ a:hover, a:focus {
 
 #content-wrap {
     font-size: 16px;
+}
+
+.pure-table{
+    font-size: 16px;
+}
+
+.l-box-block {
+    /* Bei mehrspaltigem Text: Blocksatz, Silbentrennung, kein Rand oben unten für mobile Ansichten */
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 }

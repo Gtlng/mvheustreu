@@ -109,20 +109,21 @@ a.pure-button-primary {
 
 /* We want to give the content area some more padding */
 .content {
-    padding: 1em 1em 3em;
-}
+    padding: 0em 0em 0em;
+} 
 
 /* This is the class used for the main content headers (<h2>) */
 .content-head {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin: 2em 0 1em;
+    margin: 2em 0.5em 1em;
 }
 
 /* Little bit more margin to the main content */
 h2.content-head {
     margin-bottom: 1.3em;
+    line-height: 1.2em;
 }
 h3.content-subhead {
     margin-bottom: 1em;
@@ -131,6 +132,7 @@ h3.content-subhead {
 /* This is a modifier class used when the content-head is inside a ribbon */
 .content-head-ribbon {
     color: white;
+    margin: 2em 0em 1em;
 }
 
 /* This is the class used for the content sub-headers (<h3>) */
@@ -146,7 +148,11 @@ h3.content-subhead {
     background: #2d3e50;
     color: #aaa;
 }
-
+.l-box-lrg {
+    border: none;
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
 /*
  * -- TABLET (AND UP) MEDIA QUERIES --
@@ -160,9 +166,16 @@ h3.content-subhead {
         font-size: 16px;
     }
 
+    .content {
+        padding: 0em 2em 0em;
+    } 
+
     /* We remove the border-separator assigned to .l-box-lrg */
     .l-box-lrg {
         border: none;
+        padding-left: 2em;
+        padding-right: 2em;
     }
+    
 
 }
