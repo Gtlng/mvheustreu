@@ -65,11 +65,13 @@ body::after {
 .brand-title {
     text-transform: uppercase;
     color: white;
+    letter-spacing: .2em;
 }
 
 .brand-tagline {
     font-weight: 300;
     color: white;
+    letter-spacing: .1em;
 }
 
 .nav-list {
@@ -180,7 +182,7 @@ body::after {
 
 @media (min-width: 48em) {
     .content {
-        padding: 2em 3em 0;
+        padding: 3.5em 3em 0;
         margin-left: 29.1666667%;
     }
     .blog-header {
