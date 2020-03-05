@@ -32,25 +32,29 @@ a:hover, a:focus {
     color: darkgrey;
 }
 
+.l-box-mv, .l-box-block{
+    padding-top: 0em;
+    padding-bottom: 0em;
+}
+
 .l-box-block {
     /* Bei mehrspaltigem Text: Blocksatz, Silbentrennung, kein Rand oben unten für mobile Ansichten */
     text-align: justify;
     hyphens: auto;
-    padding-top: 0em;
-    padding-bottom: 0em;
 }
 
 .content-center {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: .15em;
+    padding-right: .15em;
     max-width: 768px;
 }
 
 .headline h1 {
     font-size: 256%;
     font-weight: lighter;
+    line-height: 1.3em;
 }
 .headline h2{
     font-size: 128%;
@@ -78,10 +82,15 @@ a:hover, a:focus {
     font-size: 16px;
 }
 
-.l-box-block {
-    /* Bei mehrspaltigem Text: Blocksatz, Silbentrennung, kein Rand oben unten für mobile Ansichten */
+.l-box-block, .l-box-mv {
     padding-left: 2em;
     padding-right: 2em;
+}
+
+.content-center {
+    padding-left: 1em;
+    padding-right: 1em;
+
 }
 
 }

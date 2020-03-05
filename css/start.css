@@ -23,8 +23,8 @@ h6,
 label {
     color: #34495e;
     /* Anpassungen für MV: */
-    margin-bottom: .7em;
-    margin-top: 1.7em;
+    /* margin-bottom: .7em;
+    margin-top: 1.7em; */
 }
 
 p {
@@ -117,12 +117,12 @@ a.pure-button-primary {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin: 2em 0.5em 1em;
+    margin: 1.6em 0.5em 1em;
 }
 
 /* Little bit more margin to the main content */
 h2.content-head {
-    margin-bottom: 1.3em;
+    /* margin-bottom: 1.3em; */
     line-height: 1.2em;
 }
 h3.content-subhead {
@@ -146,7 +146,9 @@ h3.content-subhead {
 /* This is the class used for the dark-background areas. */
 .ribbon {
     background: #2d3e50;
-    color: #aaa;
+    color: rgb(200, 200, 200);
+    text-align: center;
+    font-size: 15px;
 }
 .l-box-lrg {
     border: none;
@@ -177,5 +179,9 @@ h3.content-subhead {
         padding-right: 2em;
     }
     
+    .ribbon {
+        text-align: left;
+        font-size: 16px;
+    }
 
 }
