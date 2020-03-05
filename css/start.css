@@ -124,6 +124,9 @@ a.pure-button-primary {
 h2.content-head {
     margin-bottom: 1.3em;
 }
+h3.content-subhead {
+    margin-bottom: 1em;
+}
 
 /* This is a modifier class used when the content-head is inside a ribbon */
 .content-head-ribbon {
