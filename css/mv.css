@@ -14,6 +14,7 @@
 
 a {
     text-decoration: none;
+    color: #1f8dd6
 }
 
 a:hover, a:focus {
@@ -43,12 +44,17 @@ a:hover, a:focus {
     hyphens: auto;
 }
 
-.content-center {
+.content-center, .content-center-table {
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 800px;
+}
+
+.content-center-table {
     padding-left: .15em;
     padding-right: .15em;
-    max-width: 768px;
 }
 
 .headline h1 {
@@ -66,9 +72,17 @@ a:hover, a:focus {
     font-size: 14px;
 }
 
+.hide-on-mobile{
+    display: none;
+}
+
 @media (min-width: 48em){
 
-.content-center, .content {
+    .hide-on-mobile{
+        display: block;
+    }
+
+    .content-center, .content {
 /* good idea?! */
     padding-left: 2em;
     padding-right: 2em;
