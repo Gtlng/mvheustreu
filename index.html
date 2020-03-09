@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <div id="content-wrap2" class="content" style="margin-bottom: 2em;">
+        <div id="content-wrap2" class="content" style="margin-bottom: 3.5em;">
             <h2 id="Kontakt" class="content-head is-center">Kontakt</h2>
             <div class="pure-g">
                 <div class="l-box-lrg l-box-mv pure-u-1 pure-u-md-3-5">
@@ -176,17 +176,14 @@
                     <form class="pure-form pure-form-stacked">
                         <fieldset>
                             <!-- <label for="name">Name</label> -->
-                            <input id="name" type="text" placeholder="Name">
-                            <label for="name" hidden>Vor- und Nachname</label>
+                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name">
                             <!-- <label for="email">E-Mail-Adresse</label> -->
-                            <input id="email" type="email" placeholder="E-Mail-Adresse">
-                            <label for="email" hidden>Ihre E-Mail-Adresse</label>
-                            <input id="subject" type="text" placeholder="Betreff">
-                            <label for="subject" hidden>Betreff Ihrer Nachricht an den Musikverein Heustreu</label>
+                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse">
+                            <!-- <label for="email" hidden>Ihre E-Mail-Adresse</label> -->
+                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff">
                             <!-- <label for="password">Your Password</label>
                             <input id="password" type="password" placeholder="Your Password"> -->
-                            <textarea id="message" placeholder="Nachricht" style="width:100%;height:8em;"></textarea>
-                            <label for="message" hidden>Ihre Nachricht an den Musikverein Heustreu</label>
+                            <textarea id="message" placeholder="Nachricht" aria-label="Nachricht" style="width:100%;height:9em;"></textarea>
                             <button type="submit" class="pure-button">Senden</button>
                         </fieldset>
                     </form>
