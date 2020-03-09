@@ -38,11 +38,48 @@
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script> 
     -->
     <!--<![endif]-->
+
+    <style>
+        /* Make table responsive for very small screens */
+
+        @media (max-width: 27em) {
+            table {
+                border: 1px solid cbcbcb !important;
+            }
+
+            th,
+            td {
+                border-bottom: none !important;
+                border-top: 1px solid #d6d6d6 !important;
+                border-collapse: collapse !important;
+            }
+
+            thead th {
+                display: none;
+            }
+
+            td.date {
+                font-weight: bold;
+            }
+
+            td,
+            th {
+                display: block;
+                clear: both;
+                border-left: 0em !important;
+                font-size: 15px !important;
+            }
+
+            td[data-th]:before {
+                content: attr(data-th) ":\00a0 ";
+                float: left;
+            }
+        }
+    </style>
+
 </head>
 
-
 <div id="header" class="header"></div>
-
 
 <div id="page-container">
     <div id="content-wrap">
@@ -51,7 +88,8 @@
             <div class="headline">
                 <h1 class="content-head is-center">Termine 2020</h1>
             </div>
-            <table class="pure-table pure-table-bordered pure-table-striped" style="margin-left:auto;margin-right:auto;">
+            <table class="pure-table pure-table-bordered pure-table-striped termine"
+                style="margin-left:auto;margin-right:auto;">
                 <thead>
                     <tr>
                         <th>Datum</td>
@@ -62,196 +100,196 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Samstag, 22.02.&shy;2020</td>
-                        <td>13:13</td>
-                        <td>Faschings&shy;umzug</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 22.02.&shy;2020</td>
+                        <td data-th="Uhrzeit">13:13</td>
+                        <td data-th="Ereignis">Faschings&shy;umzug</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 08.03.&shy;2020</td>
-                        <td>16:00</td>
-                        <td>Jahres&shy;haupt&shy;versammlung (Pfarrheim)</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 08.03.&shy;2020</td>
+                        <td data-th="Uhrzeit">16:00</td>
+                        <td data-th="Ereignis">Jahres&shy;haupt&shy;versammlung (Musik&shy;heim)</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Donnerstag, 26.03.&shy;2020</td>
-                        <td>19:00</td>
-                        <td>Offenes Singen (Pfarrheim)</td>
-                        <td>Böhmische</td>
+                        <td class="date">Donnerstag, 26.03.&shy;2020</td>
+                        <td data-th="Uhrzeit">19:00</td>
+                        <td data-th="Ereignis">Offenes Singen (Pfarrheim)</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 12.04.&shy;2020</td>
-                        <td>07:00</td>
-                        <td>Weckruf</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 12.04.&shy;2020</td>
+                        <td data-th="Uhrzeit">07:00</td>
+                        <td data-th="Ereignis">Weckruf</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Montag, 13.04.&shy;2020</td>
-                        <td>09:30</td>
-                        <td>Pfarr&shy;wall&shy;fahrt nach Hollstadt</td>
-                        <td>alle</td>
+                        <td class="date">Montag, 13.04.&shy;2020</td>
+                        <td data-th="Uhrzeit">09:30</td>
+                        <td data-th="Ereignis">Pfarr&shy;wall&shy;fahrt nach Hollstadt</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 26.04.&shy;2020</td>
-                        <td>10:00</td>
-                        <td>Elektro&shy;mobilitäts&shy;messe NES</td>
-                        <td>BoaH</td>
+                        <td class="date">Sonntag, 26.04.&shy;2020</td>
+                        <td data-th="Uhrzeit">10:00</td>
+                        <td data-th="Ereignis">Elektro&shy;mobilitäts&shy;messe NES</td>
+                        <td data-th="Gruppe">BoaH</td>
                     </tr>
                     <tr>
-                        <td>Donnerstag, 30.04.&shy;2020</td>
-                        <td>18:00</td>
-                        <td>Maibaum&shy;aufstellung Feu&shy;erwehr</td>
-                        <td>BoaH</td>
+                        <td class="date">Donnerstag, 30.04.&shy;2020</td>
+                        <td data-th="Uhrzeit">18:00</td>
+                        <td data-th="Ereignis">Maibaum&shy;aufstellung Feu&shy;erwehr</td>
+                        <td data-th="Gruppe">BoaH</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>18:30</td>
-                        <td>Vorstell&shy;abend Musik&shy;schüler</td>
-                        <td></td>
+                        <td class="date">Noch unklar</td>
+                        <td data-th="Uhrzeit">18:30</td>
+                        <td data-th="Ereignis">Vorstell&shy;abend Musik&shy;schüler</td>
+                        <td data-th="Gruppe">-</td>
                     </tr>
                     <tr>
-                        <td>Dienstag, 19.05.&shy;2020</td>
-                        <td>18:00</td>
-                        <td>Bitt&shy;gang nach Hollstadt</td>
-                        <td>alle</td>
+                        <td class="date">Dienstag, 19.05.&shy;2020</td>
+                        <td data-th="Uhrzeit">18:00</td>
+                        <td data-th="Ereignis">Bitt&shy;gang nach Hollstadt</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Donnerstag, 11.06.&shy;2020</td>
-                        <td>10:00</td>
-                        <td>Fronleich&shy;namsprozes&shy;sion</td>
-                        <td>alle</td>
+                        <td class="date">Donnerstag, 11.06.&shy;2020</td>
+                        <td data-th="Uhrzeit">10:00</td>
+                        <td data-th="Ereignis">Fronleich&shy;namsprozes&shy;sion</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Donnerstag, 18.06.&shy;2020</td>
-                        <td>18:00</td>
-                        <td>Vitus&shy;gottes&shy;dienst</td>
-                        <td>Böhmische</td>
+                        <td class="date">Donnerstag, 18.06.&shy;2020</td>
+                        <td data-th="Uhrzeit">18:00</td>
+                        <td data-th="Ereignis">Vitus&shy;gottes&shy;dienst</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 20.06.&shy;2020</td>
-                        <td>17:30</td>
-                        <td>Festzug MV Wollbach</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 20.06.&shy;2020</td>
+                        <td data-th="Uhrzeit">17:30</td>
+                        <td data-th="Ereignis">Festzug MV Wollbach</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 21.06.&shy;2020</td>
-                        <td>15:00</td>
-                        <td>Musikfest Wollbach</td>
-                        <td>BoaH</td>
+                        <td class="date">Sonntag, 21.06.&shy;2020</td>
+                        <td data-th="Uhrzeit">15:00</td>
+                        <td data-th="Ereignis">Musikfest Wollbach</td>
+                        <td data-th="Gruppe">BoaH</td>
                     </tr>
                     <tr>
-                        <td>Freitag, 26.06.&shy;2020</td>
-                        <td>18:00</td>
-                        <td>Saalemusicum</td>
-                        <td>alle</td>
+                        <td class="date">Freitag, 26.06.&shy;2020</td>
+                        <td data-th="Uhrzeit">18:00</td>
+                        <td data-th="Ereignis">Saalemusicum</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 12.07.&shy;2020</td>
-                        <td>17:00</td>
-                        <td>Pfarrfest</td>
-                        <td>Böhmische</td>
+                        <td class="date">Sonntag, 12.07.&shy;2020</td>
+                        <td data-th="Uhrzeit">17:00</td>
+                        <td data-th="Ereignis">Pfarrfest</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 15.08.&shy;2020</td>
-                        <td>17:00</td>
-                        <td>Liesbachtal&shy;fest MV Burgwall&shy;bach?</td>
-                        <td>Böhmische</td>
+                        <td class="date">Samstag, 15.08.&shy;2020</td>
+                        <td data-th="Uhrzeit">17:00</td>
+                        <td data-th="Ereignis">Liesbachtal&shy;fest MV Burgwall&shy;bach?</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Freitag, 18.09.&shy;2020</td>
-                        <td></td>
-                        <td>Kreismusik&shy;fest Heustreu</td>
-                        <td>alle</td>
+                        <td class="date">Freitag, 18.09.&shy;2020</td>
+                        <td data-th="Uhrzeit">-</td>
+                        <td data-th="Ereignis">Kreismusik&shy;fest Heustreu</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 19.09.&shy;2020</td>
-                        <td></td>
-                        <td>Kreismusik&shy;fest Heustreu</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 19.09.&shy;2020</td>
+                        <td data-th="Uhrzeit">-</td>
+                        <td data-th="Ereignis">Kreismusik&shy;fest Heustreu</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 20.09.&shy;2020</td>
-                        <td></td>
-                        <td>Kreismusik&shy;fest Heustreu</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 20.09.&shy;2020</td>
+                        <td data-th="Uhrzeit">-</td>
+                        <td data-th="Ereignis">Kreismusik&shy;fest Heustreu</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 27.09.&shy;2020</td>
-                        <td>07:00</td>
-                        <td>Weckruf</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 27.09.&shy;2020</td>
+                        <td data-th="Uhrzeit">07:00</td>
+                        <td data-th="Ereignis">Weckruf</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 27.09.&shy;2020</td>
-                        <td>10:00</td>
-                        <td>Schutzengelfest</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 27.09.&shy;2020</td>
+                        <td data-th="Uhrzeit">10:00</td>
+                        <td data-th="Ereignis">Schutzengelfest</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 04.10.&shy;2020</td>
-                        <td>10:00</td>
-                        <td>Erntedankfest</td>
-                        <td></td>
+                        <td class="date">Sonntag, 04.10.&shy;2020</td>
+                        <td data-th="Uhrzeit">10:00</td>
+                        <td data-th="Ereignis">Ernte&shy;dank&shy;fest</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Donnerstag, 15.10.&shy;2020</td>
-                        <td>19:30</td>
-                        <td>Offenes Singen</td>
-                        <td>alle</td>
+                        <td class="date">Donnerstag, 15.10.&shy;2020</td>
+                        <td data-th="Uhrzeit">19:30</td>
+                        <td data-th="Ereignis">Offenes Singen</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 07.11.&shy;2020</td>
-                        <td>13:30</td>
-                        <td>Kirchweih</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 07.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">13:30</td>
+                        <td data-th="Ereignis">Kirch&shy;weih</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 08.11.&shy;2020</td>
-                        <td>15:00</td>
-                        <td>Aufstel&shy;lung Kirchweih&shy;baum</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 08.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">15:00</td>
+                        <td data-th="Ereignis">Aufstel&shy;lung Kirchweih&shy;baum</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 08.11.&shy;2020</td>
-                        <td>16:30</td>
-                        <td>Kirchweih&shy;tanz im Sport&shy;heim</td>
-                        <td>Böhmische</td>
+                        <td class="date">Sonntag, 08.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">16:30</td>
+                        <td data-th="Ereignis">Kirch&shy;weih&shy;tanz im Sport&shy;heim</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Mittwoch, 11.11.&shy;2020</td>
-                        <td>18:00</td>
-                        <td>Martinszug</td>
-                        <td>alle</td>
+                        <td class="date">Mittwoch, 11.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">18:00</td>
+                        <td data-th="Ereignis">Martinszug</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 14.11.&shy;2020</td>
-                        <td>16:00</td>
-                        <td>Ehren&shy;abend 50 Jahre Musik&shy;verein</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 14.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">16:00</td>
+                        <td data-th="Ereignis">Ehren&shy;abend 50 Jahre Musik&shy;verein</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 15.11.&shy;2020</td>
-                        <td></td>
-                        <td>Volks&shy;trauer&shy;tag</td>
-                        <td>alle</td>
+                        <td class="date">Sonntag, 15.11.&shy;2020</td>
+                        <td data-th="Uhrzeit">-</td>
+                        <td data-th="Ereignis">Volks&shy;trauer&shy;tag</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                     <tr>
-                        <td>Sonntag, 06.12.&shy;2020</td>
-                        <td>16:00</td>
-                        <td>Konzert Campus?</td>
-                        <td>Böhmische</td>
+                        <td class="date">Sonntag, 06.12.&shy;2020</td>
+                        <td data-th="Uhrzeit">16:00</td>
+                        <td data-th="Ereignis">Konzert Campus?</td>
+                        <td data-th="Gruppe">Böhmische</td>
                     </tr>
                     <tr>
-                        <td>Samstag, 19.12.&shy;2020</td>
-                        <td>19:30</td>
-                        <td>Weih&shy;nachts&shy;konzert</td>
-                        <td>alle</td>
+                        <td class="date">Samstag, 19.12.&shy;2020</td>
+                        <td data-th="Uhrzeit">19:30</td>
+                        <td data-th="Ereignis">Weih&shy;nachts&shy;konzert</td>
+                        <td data-th="Gruppe">alle</td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
-      
+
         <p>&nbsp;</p>
 
     </div>
