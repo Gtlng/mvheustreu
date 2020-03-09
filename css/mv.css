@@ -88,7 +88,7 @@ a:hover, a:focus {
     padding-right: 2em;
 }
 
-#content-wrap {
+#content-wrap, #content-wrap2 {
     font-size: 16px;
 }
 
