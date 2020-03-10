@@ -3,7 +3,7 @@
     min-height: 100vh;
 }
 
-#content-wrap {
+#content-wrap, #content-wrap2 {
     /* Footer height */
     padding-bottom: 3.5rem;
       /* Menu height - margin of content-head */
