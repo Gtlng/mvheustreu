@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     // Holt den Header
-    fetch('https://gtlng.github.io/mvheustreu/js/htmlcomponents/header.html').then(function (response) {
+    fetch('/htmlcomponents/header.html').then(function (response) {
         return response.text();
     }).then(function (html) {
         document.getElementById("header").innerHTML = html;
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     // Holte den Footer
-    fetch('https://gtlng.github.io/mvheustreu/js/htmlcomponents/footer.html').then(function (response) {
+    fetch('/htmlcomponents/footer.html').then(function (response) {
         // The API call was successful!
         return response.text();
     }).then(function (html) {
