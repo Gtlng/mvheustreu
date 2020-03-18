@@ -30,7 +30,7 @@ body::after {
     height: 0;
     overflow: hidden;
     z-index: -1;
-    content: url('img/saxophone_notes_blog.jpg') url('img/trombone_on_stage_blog.jpg') url('img/tuba_blog.jpg') url('img/capitol_blog.jpg') url('img/trumpet_blog.jpg');
+    content: url('img/saxophone_notes_blog.jpg') url('img/konzert_blog.jpg') url('img/tuba_blog.jpg') url('img/capitol_blog.jpg') url('img/trumpet_blog.jpg') url('img/trombone_on_stage_blog.jpg') url('img/klarinette_blog.jpg');
 }
 
 @keyframes slideshow {
@@ -38,7 +38,7 @@ body::after {
         background-image: url('img/saxophone_notes_blog.jpg');
     }
     17% {
-        background-image: url('img/trombone_on_stage_blog.jpg');
+        background-image: url('img/konzert_blog.jpg');
     }
     33% {
         background-image: url('img/tuba_blog.jpg');
@@ -53,7 +53,7 @@ body::after {
         background-image: url('img/trombone_on_stage_blog.jpg');
     }
     100% {
-        background-image: url('img/saxophone_notes_blog.jpg');
+        background-image: url('img/klarinette_blog.jpg');
     }
 }
 
@@ -72,6 +72,7 @@ body::after {
     font-weight: 300;
     color: white;
     letter-spacing: .1em;
+    font-size: 1.3em
 }
 
 .nav-list {
@@ -196,15 +197,27 @@ body::after {
     }
     .brand-title {
         font-size: 1.45rem;
-        letter-spacing: .04em;
+        letter-spacing: .03em;
     }
     .brand-tagline {
         font-size: 1.1rem;
         letter-spacing: 0em;
+        line-height: 2.5em;
     }
 }
 
-@media (min-width: 64em) {
+@media (min-width: 63em) {
+    .brand-title {
+        font-size: 2.2rem;
+        letter-spacing: .04em;
+    }
+    .brand-tagline {
+        font-size: 1.3rem;
+        letter-spacing: .01em;
+    }
+}
+
+@media (min-width: 70.5em) {
     .brand-title {
         font-size: 2.2rem;
         letter-spacing: .04em;
@@ -215,18 +228,18 @@ body::after {
     }
 }
 
-@media (min-width: 80em) {
+@media (min-width: 82em) {
     .brand-title {
         font-size: 2.7rem;
         letter-spacing: .07em;
     }
     .brand-tagline {
         font-size: 1.81rem;
-        letter-spacing: .04em;
+        letter-spacing: .03.5em;
     }
 }
 
-@media (min-width: 90em) {
+@media (min-width: 93em) {
     .brand-title {
         font-size: 3.15rem;
         letter-spacing: .1em;
