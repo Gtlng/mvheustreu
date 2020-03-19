@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Startseite des Musik- und Heimatvereins Heustreu">
     <meta name="keywords" content="Startseite">
-    <meta name="theme-color" content="#2d3e50"/>
+    <meta name="theme-color" content="#2d3e50" />
     <link rel="icon" href="img/common/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/common/apple-touch-icon.png">
     <title>Musikverein Heustreu</title>
@@ -137,7 +137,8 @@
 
         <div class="ribbon l-box-lrg pure-g">
             <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-                <img width="350" alt="File Icons" class="pure-img-responsive" src="img/Musikfest_Gabolshausen_2016_small.jpg">
+                <img width="350" alt="File Icons" class="pure-img-responsive"
+                    src="img/Musikfest_Gabolshausen_2016_small.jpg">
             </div>
             <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
@@ -165,7 +166,8 @@
 
                     <h3 style="margin-bottom:.6em;margin-top: 2.5em;">Adresse</h3>
 
-                    <p><b><a href="geo:0,0?q=50.356751,10.259004" title="Geo URI; funktioniert momentan nur auf Android" target="_blank" style="color:#5e6869">Musikverein Heustreu</a></b></br>
+                    <p><b><a href="geo:0,0?q=50.356751,10.259004" title="Geo URI; funktioniert momentan nur auf Android"
+                                target="_blank" style="color:#5e6869">Musikverein Heustreu</a></b></br>
                         Haus der Musik</br>
                         Torstraße 23</br>
                         97618 Heustreu
@@ -175,20 +177,50 @@
 
                 <div class="l-box-lrg l-box-mv pure-u-1 pure-u-md-2-5" style="margin-bottom:2em;">
                     <h3 style="margin-bottom:.3em;">Kontaktformular</h3>
-                    <form class="pure-form pure-form-stacked">
+                    <form id="contact" class="pure-form pure-form-stacked">
                         <fieldset>
                             <!-- <label for="name">Name</label> -->
-                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name">
+                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name" required>
                             <!-- <label for="email">E-Mail-Adresse</label> -->
-                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse">
+                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse"
+                                required>
                             <!-- <label for="email" hidden>Ihre E-Mail-Adresse</label> -->
-                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff">
+                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" required>
                             <!-- <label for="password">Your Password</label>
                             <input id="password" type="password" placeholder="Your Password"> -->
-                            <textarea id="message" placeholder="Nachricht" aria-label="Nachricht" style="width:100%;height:9em;"></textarea>
-                            <button type="submit" class="pure-button">Senden</button>
+                            <textarea id="message" placeholder="Nachricht" aria-label="Nachricht"
+                                style="width:100%;height:9em;"></textarea>
+                            <label for="regulations" style="font-weight: normal; margin-bottom: 1em;">
+                                <input id="regulations" type="checkbox" style="width: auto; margin-bottom: 0em;"
+                                    required>&ensp;Die <a href="/datenschutz.html"
+                                    title="Datenschutz - MV Heustreu">Daten&shy;schutz&shy;bestim&shy;mungen</a> habe
+                                ich zur Kenntnis genommen
+                                und akzeptiere sie.</label>
+
+
+                            <button id="send" type="submit" class="pure-button" disabled>Senden</button>
                         </fieldset>
                     </form>
+
+                    <script>
+                        const contact = document.getElementById('contact');
+                        const emailField = document.getElementById('email');
+                        const send = document.getElementById('send');
+                          
+                        emailField.addEventListener('keyup', function (event) {
+                          isValidEmail = emailField.checkValidity();
+                          
+                          if ( isValidEmail ) {
+                            send.disabled = false;
+                          } else {
+                            send.disabled = true;
+                          }
+                        });
+                          
+                        // send.addEventListener('click', function (event) {
+                        //   contact.submit();
+                        // });
+                        </script>
                 </div>
 
 
