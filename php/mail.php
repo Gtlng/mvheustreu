@@ -17,7 +17,7 @@ try {
     require_once '../configs/credentials.php';
 
     //Recipients
-    $mail->setFrom('johannes@gtlng.com', 'Mailer');
+    $mail->setFrom('test@gtlng.com', 'Test-Mailer');
     $mail->addAddress('johannes@gtlng.de', 'Johannes Gütling');     // Add a recipient
     // $mail->addAddress('ellen@example.com');               // Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
