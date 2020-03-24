@@ -9,18 +9,31 @@ require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
+
+function sendMail($json){
+
+$data = json_decode($json);
+
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 try {
-    //get login and server infos from file
-    require_once '../configs/credentials.php';
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+    $mail->SMTPDebug = 0;
+    $mail->isSMTP();						// Enable SMTP
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
+    
+    //get login information from file
+    require ('../configs/credentials_mail.php');
 
     //Recipients
     $mail->setFrom('test@gtlng.com', 'Test-Mailer');
-    $mail->addAddress('johannes@gtlng.de', 'Johannes Gütling');     // Add a recipient
+    
+foreach($data->to as $recipient){
+    	$mail->addAddress($recipient->mail, $recipient->name);
+    }
     // $mail->addAddress('ellen@example.com');               // Name is optional
-    // $mail->addReplyTo('info@example.com', 'Information');
+    $mail->addReplyTo($data->from, $data->fromname);
     // $mail->addCC('cc@example.com');
     // $mail->addBCC('bcc@example.com');
 
@@ -30,12 +43,14 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = $data->subject;
+    $mail->Body    = $data->body;
+    $mail->AltBody = $data->altbody;
 
     $mail->send();
-    echo 'Message has been sent';
+    return true;
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    return false;
+}
 }

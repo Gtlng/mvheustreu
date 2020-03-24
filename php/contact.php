@@ -1,6 +1,6 @@
 <?php
-
-require_once "../configs/credentials.php";
+require_once "mail.php";
+require_once "../configs/credentials_db.php";
 
 $input = json_decode(file_get_contents('php://input'));
 
@@ -8,10 +8,20 @@ $input = json_decode(file_get_contents('php://input'));
 if($input){
 
 $name = $input->name;
-$mail = $input->mail;
+$mailadd = $input->mail;
 $subject = $input->subject;
 $message = $input->message;
 
+
+//build json for mail function
+$json = new stdClass();
+$json->from = $mailadd;
+$json->fromname = $name;
+$json->subject = $subject;
+$json->altbody = "";
+$json->body = $message;
+$json->to = array(array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Guetling'),
+		 array('mail' => 'gabriel.hartmann@uni-bamberg.de', 'name' => 'Gabriel Hartmann'));
 
 try {
   // Connect and create the PDO object
@@ -21,7 +31,7 @@ try {
   // Define an insert query
   $sql = "INSERT INTO `contact` (`name`, `mail`, `subject`, `message`)
     VALUES
-      ('$name', '$mail', '$subject', '$message')";
+      ('$name', '$mailadd', '$subject', '$message')";
   $count = $conn->exec($sql);
 
   $conn = null;        // Disconnect
@@ -31,8 +41,15 @@ catch(PDOException $e) {
 }
 
 // If data added ($count not false) displays the number of rows added
-if($count !== false) echo "success";
-
+if($count !== false){
+	if(sendMail(json_encode($json))){
+	echo "success";
+	}
+	else{
+		echo "Mail send failed";
+	}
+		
+}
 }
 
 ?>
