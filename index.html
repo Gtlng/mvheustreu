@@ -201,26 +201,45 @@
                             <button id="send" type="submit" class="pure-button" disabled>Senden</button>
                         </fieldset>
                     </form>
-
+                    <div id="msg_event"></div>
                     <script>
                         const contact = document.getElementById('contact');
                         const emailField = document.getElementById('email');
                         const send = document.getElementById('send');
-                          
+
                         emailField.addEventListener('keyup', function (event) {
-                          isValidEmail = emailField.checkValidity();
-                          
-                          if ( isValidEmail ) {
-                            send.disabled = false;
-                          } else {
-                            send.disabled = true;
-                          }
+                            isValidEmail = emailField.checkValidity();
+
+                            if (isValidEmail) {
+                                send.disabled = false;
+                            } else {
+                                send.disabled = true;
+                            }
                         });
-                          
-                        // send.addEventListener('click', function (event) {
-                        //   contact.submit();
-                        // });
-                        </script>
+
+                        send.addEventListener('click', function (event) {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('PUT', '/php/contact.php');
+                            xhr.setRequestHeader('Content-Type', 'application/json');
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    if (xhr.responseText == "success") {
+                                        alert("Ihre Nachricht wurde erfolgreich übermittelt!");
+                                    } else {
+                                        alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
+                                    }
+                                }
+                            };
+                            xhr.send(JSON.stringify({
+                                name: document.getElementById('name').value,
+                                mail: document.getElementById('email').value,
+                                subject: document.getElementById('subject').value,
+                                message: document.getElementById('message').value
+                            }));
+                            document.getElementById("contact").reset();
+                            event.preventDefault();
+                        });
+                    </script>
                 </div>
 
 
