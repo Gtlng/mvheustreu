@@ -18,9 +18,10 @@ $json->from = $mailadd;
 $json->fromname = $name;
 $json->subject = $subject;
 $json->altbody = "";
-$json->body = "Neue Nachricht vom Kontaktformular der Homepage. Absender: ".$name." (".$mailadd."):</br>".$message;
+$json->body = "Neue Nachricht vom Kontaktformular der Homepage. Absender: ".$name." (".$mailadd."): </br>".$message;
 $json->to = array(array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Guetling'),
-		 array('mail' => 'gh89@bk.ru', 'name' => 'Gabriel Hartmann')
+     array('mail' => 'gh89@bk.ru', 'name' => 'Gabriel Hartmann'),
+     array('mail' => 'johannes.guetling@t-online.de', 'name' => 'Johannes Gütling')
 );
 
 try {
