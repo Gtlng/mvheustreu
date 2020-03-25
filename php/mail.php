@@ -22,14 +22,15 @@ try {
     $mail->SMTPDebug = 0;
     $mail->isSMTP();						// Enable SMTP
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
-    
+    $mail->CharSet = 'UTF-8';
+
     //get login information from file
     require ('../configs/credentials_mail.php');
 
     //Recipients
-    $mail->setFrom('test@gtlng.com', 'Test-Mailer');
+    $mail->setFrom('test@gtlng.de', 'Webmailer');
     
-foreach($data->to as $recipient){
+    foreach($data->to as $recipient){
     	$mail->addAddress($recipient->mail, $recipient->name);
     }
     // $mail->addAddress('ellen@example.com');               // Name is optional
