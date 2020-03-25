@@ -150,6 +150,11 @@ h3.content-subhead {
     text-align: center;
     font-size: 15px;
 }
+
+.ribbon a{
+color: white;
+}
+
 .l-box-lrg {
     border: none;
     padding-left: 1em;
