@@ -47,10 +47,12 @@ foreach($data->to as $recipient){
     $mail->Body    = $data->body;
     $mail->AltBody = $data->altbody;
 
+    if(empty($mail->Body)) $mail->Body = ' ';
+
     $mail->send();
     return true;
 } catch (Exception $e) {
-    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     return false;
 }
 }

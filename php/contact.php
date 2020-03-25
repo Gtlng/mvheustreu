@@ -12,7 +12,6 @@ $mailadd = $input->mail;
 $subject = $input->subject;
 $message = $input->message;
 
-
 //build json for mail function
 $json = new stdClass();
 $json->from = $mailadd;
@@ -21,7 +20,8 @@ $json->subject = $subject;
 $json->altbody = "";
 $json->body = $message;
 $json->to = array(array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Guetling'),
-		 array('mail' => 'gabriel.hartmann@uni-bamberg.de', 'name' => 'Gabriel Hartmann'));
+		 array('mail' => 'gabriel.hartmann@uni-bamberg.de', 'name' => 'Gabriel Hartmann')
+);
 
 try {
   // Connect and create the PDO object

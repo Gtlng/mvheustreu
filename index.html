@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="css/slider_landing.css">
     <link rel="stylesheet" href="css/menu.css">
     <script src="js/main.js"></script>
+    <link href="css/validation.min.css" rel="stylesheet">
+    <script src="js/validation.min.js"></script> 
     <!--<![endif]-->
 </head>
 
@@ -180,45 +182,40 @@
                     <form id="contact" class="pure-form pure-form-stacked">
                         <fieldset>
                             <!-- <label for="name">Name</label> -->
-                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name" required>
+                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name" class="validate" 
+         data-validate="required">
                             <!-- <label for="email">E-Mail-Adresse</label> -->
-                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse"
-                                required>
+                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse" class="validate" 
+         data-validate="required,email">
                             <!-- <label for="email" hidden>Ihre E-Mail-Adresse</label> -->
-                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" required>
+                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" class="validate" 
+         data-validate="required">
                             <!-- <label for="password">Your Password</label>
                             <input id="password" type="password" placeholder="Your Password"> -->
                             <textarea id="message" placeholder="Nachricht" aria-label="Nachricht"
                                 style="width:100%;height:9em;"></textarea>
                             <label for="regulations" style="font-weight: normal; margin-bottom: 1em;">
-                                <input id="regulations" type="checkbox" style="width: auto; margin-bottom: 0em;"
-                                    required>&ensp;Die <a href="/datenschutz.html"
+                                <input id="regulations" type="checkbox" style="width: auto; margin-bottom: 0em;" class="validate" 
+         data-validate="required">&ensp;Die <a href="/datenschutz.html"
                                     title="Datenschutz - MV Heustreu">Daten&shy;schutz&shy;bestim&shy;mungen</a> habe
                                 ich zur Kenntnis genommen
                                 und akzeptiere sie.</label>
 
 
-                            <button id="send" type="submit" class="pure-button" disabled>Senden</button>
+                            <button id="send" class="pure-button">Senden</button>
                         </fieldset>
                     </form>
-                    <div id="msg_event"></div>
                     <script>
-                        const contact = document.getElementById('contact');
-                        const emailField = document.getElementById('email');
-                        const send = document.getElementById('send');
-
-                        emailField.addEventListener('keyup', function (event) {
-                            isValidEmail = emailField.checkValidity();
-
-                            if (isValidEmail) {
-                                send.disabled = false;
-                            } else {
-                                send.disabled = true;
-                            }
-                        });
+                        //const contact = document.getElementById('contact');
+			const send = document.getElementById('send');
+                      
+			validation.init("#contact");
 
                         send.addEventListener('click', function (event) {
-                            var xhr = new XMLHttpRequest();
+                            
+			    if(validation.validate()){
+
+			    var xhr = new XMLHttpRequest();
                             xhr.open('PUT', '/php/contact.php');
                             xhr.setRequestHeader('Content-Type', 'application/json');
                             xhr.onload = function () {
@@ -238,6 +235,7 @@
                             }));
                             document.getElementById("contact").reset();
                             event.preventDefault();
+}
                         });
                     </script>
                 </div>
