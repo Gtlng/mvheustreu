@@ -57,12 +57,12 @@
                 <div class="l-box l-box-mv pure-u-1 pure-u-md-1-1 pure-u-lg-1-3">
                     <h3 class="content-subhead is-center">
 
-                        Freitag, 18.09.20
+                        Freitag, 18.09.2020
                     </h3>
 
                     <div class="pure-g" style="line-height: 0em; margin-bottom: 2em;">
                         <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
-                            <a href="../img/kms20/SpinnichLogoGross.jpg" class="glightbox"
+                            <a href="../img/kms20/SpinnichLogoGross.jpg" class="glightbox" title="Spinnich"
                                 data-glightbox="title:; description:" ;>
                                 <img src="../img/kms20/SpinnichLogo169_thumb.jpg" class="pure-img-responsive"
                                     alt="Spinnich Logo">
@@ -77,8 +77,8 @@
                         </div>
                     </div>
 
-                    <p>Eröffnet wird unser Fest am Freitagabend von der Band <a
-                            href="http://www.spinnich.de/intro.html" title="Spinnich" target="_blank">Spinnich</a>.</p>
+                    <p>Eröffnet wird unser Fest am Freitagabend von der Band <a href="http://www.spinnich.de/intro.html"
+                            title="Spinnich" target="_blank">Spinnich</a>.</p>
                     <p>Bekannt ist die Gruppe vor allem
                         durch ihre jährlichen Aufritte am 23. Dezember in der Wolhalla. Die zwölf Musiker um Bandleader
                         Frank Greier haben stets die Mission, die perfekte Mischung aus Rhythm und Soul, aus Disko und
@@ -96,7 +96,7 @@
 
                 <div class="l-box l-box-mv pure-u-1 pure-u-md-1-1 pure-u-lg-1-3">
                     <h3 class="content-subhead is-center">
-                        Samstag, 20.09.20
+                        Samstag, 20.09.2020
                     </h3>
                     <div class="pure-g" style="line-height: 0em; margin-bottom: 2em;">
                         <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
@@ -129,38 +129,37 @@
                         gerne als Stimmenimitator
                         mit Einlagen bekannter Künstler. Egal ob Thermomix oder Tannenbaum, vieles wird von ihm
                         musikalisch auf die
-                        Schippe genommen, so dass beim Publikum kein Auge trocken bleibt.</p>
-
+                        Schippe genommen, sodass beim Publikum kein Auge trocken bleibt.</p>
 
                 </div>
 
 
                 <div class="l-box l-box-mv pure-u-1 pure-u-md-1-1 pure-u-lg-1-3">
                     <h3 class="content-subhead is-center">
-                        Sonntag, 21.09.20
+                        Sonntag, 21.09.2020
                     </h3>
 
                     <div class="pure-g" style="line-height: 0em; margin-bottom: 2em;">
-                        <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
-                            <a href="../img/kms20/Hergolshaeuser_Musikanten_gross.jpg" class="glightbox" title="Hergolshäuser Musikanten"
+                        <div id="picAbend" class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
+                            <a href="../img/kms20/Hergolshaeuser_Musikanten_gross.jpg" class="glightbox"
+                                title="Hergolshäuser Musikanten"
                                 data-glightbox="title:Hergolshäuser Musikanten; description:" ;>
                                 <img src="../img/kms20/Hergolshaeuser_Musikanten169_thumb.jpg"
                                     class="pure-img-responsive" alt="Hergolshäuser Musikanten">
                             </a>
                         </div>
 
-                        <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 hidden" style="padding:.1em">
-                            <a href="../img/kms20/KieselUli.jpg" class="glightbox"
-                                data-glightbox="title:Uli Kiesel; description:" ;>
-                                <img src="#" class="pure-img-responsive" alt="Uli Kiesel">
+                        <div id="picTag" class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em; display: none;">
+                            <a href="../img/kms20/Begaxel.jpg" class="glightbox" title="Begaxel"
+                                data-glightbox="title:Begaxel; description:" ;>
+                                <img src="../img/kms20/Begaxel_thumb.jpg" class="pure-img-responsive" alt="Begaxel">
                             </a>
                         </div>
                     </div>
-                    <!-- <p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p> -->
+                    
                     <button id="Button" class="pure-button" style="display: block; margin: 0 auto;"
                         onclick="switchProgramm()">Tagesprogramm anzeigen</button>
-                    <!-- <button id="AbendButton" class="pure-button" onclick="showAbendprogramm()" style="text-decoration:underline; font-weight: bold;">Abendprogramm</button> -->
-
+                    
                     <div id="TagProgramm" style="display: none;">
                         <p>Der Sonntag beginnt traditionell mit einem Festgottesdienst. Im Anschluss unterhalten Sie die
                             <a href="http://www.trachtenkapelle-roedles.de/Startseite/" title="Trachtenkapelle Rödles"
@@ -183,6 +182,7 @@
                                 title="Hergolshäuser Musikanten" target="_blank">Hergolshäuser Musikanten</a> (siehe
                             Abendprogramm).</p>
                     </div>
+                    
                     <div id="AbendProgramm">
                         <p>„Böhmische Blasmusik ist unser Leben, unsere Leidenschaft“ ist das Motto der <a
                                 href="https://www.hergolshaeuser.de/" title="Hergolshäuser Musikanten"
@@ -203,19 +203,24 @@
                     <script>
                         function switchProgramm() {
                             var tag = document.getElementById("TagProgramm");
-                            var abend = document.getElementById("AbendProgramm")
+                            var abend = document.getElementById("AbendProgramm");
+                            var picAbend = document.getElementById("picAbend");
+                            var picTag = document.getElementById("picTag");
                             var button = document.getElementById("Button");
 
                             if (button.innerHTML === "Tagesprogramm anzeigen") {
                                 tag.style.display = "block";
+                                picTag.style.display = "block";
                                 abend.style.display = "none";
+                                picAbend.style.display = "none";
                                 button.innerHTML = "Abendprogramm anzeigen"
-                                // tagbutton.disabled = true;
                                 // button.style.textDecoration = "underline";
-                                // abendbutton.disabled = false;
+                                // button.disabled = false;
                             } else {
                                 abend.style.display = "block";
+                                picAbend.style.display = "block";
                                 tag.style.display = "none";
+                                picTag.style.display = "none";
                                 button.innerHTML = "Tagesprogramm anzeigen"
                             }
                         }                   
@@ -240,9 +245,8 @@
                         Heustreu
                         stattfinden.</p>
                     <p>Mit fortschreitender Planung werden die Informationen auf dieser Seite aktualisiert.</p>
-                    <p>Der Kartenvorverkauf startet am xx.xx.xxxx.</p>
-                    <p>Wir laden Sie heute schon herzlich ein, uns bei unserem Kreismusikfest zu besuchen!
-                    </p>
+                    <p>Wir laden Sie heute schon herzlich ein, uns bei unserem Kreismusikfest zu besuchen!</p>
+                    <p>Der Kartenvorverkauf startet voraussichtlich im Juni.</p>
                 </div>
             </div>
 
@@ -268,16 +272,15 @@
                         </div> -->
                     </div>
                 </div>
-
                 <div class="l-box l-box-mv pure-u-1 pure-u-md-1-1 pure-u-lg-1-3">
                     <div class="pure-g" style="line-height: 0em; margin-bottom: 2em;">
                         <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
-                            <a href="../img/kms20/RöhrenderFichtenbulle.jpg" class="glightbox" title="Röhrender Fichtenbulle"
-                                data-glightbox="title:Röhrender Fichtenbulle; description:" ;>
-                                <img src="../img/kms20/RöhrenderFichtenbulle_thumb.jpg" class="pure-img-responsive"
-                                    alt="Röhrender Fichtenbulle">
+                            <a href="../img/kms20/Begaxel1.jpg" class="glightbox" title="Begaxel"
+                                data-glightbox="title:Begaxel; description:" ;>
+                                <img src="../img/kms20/Begaxel1_thumb.jpg" class="pure-img-responsive"
+                                    alt="Begaxel">
                             </a>
-                        </div>
+                        </div>         
 
                         <!-- <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 hidden" style="padding:.1em">
                             <a href="../img/kms20/KieselUli.jpg" class="glightbox"
@@ -291,19 +294,20 @@
                 <div class="l-box l-box-mv pure-u-1 pure-u-md-1-1 pure-u-lg-1-3">
                     <div class="pure-g" style="line-height: 0em; margin-bottom: 2em;">
                         <div class="l-box pure-u-1 pure-u-md-1 pure-u-lg-1" style="padding:.1em">
-                            <a href="../img/kms20/Hergolshaeuser_Musikanten_gross.jpg" class="glightbox"
-                                data-glightbox="title:Hergolshäuser Musikanten; description:" ;>
-                                <img src="../img/kms20/Hergolshaeuser_Musikanten_thumb.jpg" class="pure-img-responsive"
-                                    alt="Hergolshäuser Musikanten">
+                            <a href="../img/kms20/RöhrenderFichtenbulle.jpg" class="glightbox"
+                                title="Röhrender Fichtenbulle"
+                                data-glightbox="title:Röhrender Fichtenbulle; description:" ;>
+                                <img src="../img/kms20/RöhrenderFichtenbulle_thumb.jpg" class="pure-img-responsive"
+                                    alt="Röhrender Fichtenbulle">
                             </a>
                         </div>
 
-                        <!-- <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 hidden" style="padding:.1em">
-                            <a href="../img/kms20/KieselUli.jpg" class="glightbox"
-                                data-glightbox="title:Uli Kiesel; description:" ;>
-                                <img src="#" class="pure-img-responsive" alt="Uli Kiesel">
+                        <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 hidden" style="padding:.1em">
+                            <a href="../img/kms20/RoehrenderFichtenbulle1.jpg" class="glightbox"
+                                data-glightbox="title:Röhrender Fichtenbulle; description:" ;>
+                                <img src="#" class="pure-img-responsive" alt="Röhrender Fichtenbulle">
                             </a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
@@ -311,9 +315,9 @@
 
             <!-- <div class="content-center" style="padding-top: 1em;">
                 <p></p>
-            </div> -->
+            </div>
 
-            <p>&nbsp;</p>
+           <p>&nbsp;</p> -->
 
         </div>
 
