@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <script src="js/main.js"></script>
     <link href="css/validation.min.css" rel="stylesheet">
-    <script src="js/validation.min.js"></script> 
+    <script src="js/validation.min.js"></script>
     <!--<![endif]-->
 </head>
 
@@ -139,17 +139,19 @@
 
         <div class="ribbon l-box-lrg pure-g">
             <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-                <img width="350" alt="Heustreuer Musikanten beim Festzug in Gabolshausen 2016" class="pure-img-responsive"
-                    src="img/Musikfest_Gabolshausen_2016_small.jpg">
+                <img width="350" alt="Heustreuer Musikanten beim Festzug in Gabolshausen 2016"
+                    class="pure-img-responsive" src="img/kms20/Kaufmannsware_thumb.jpg">
             </div>
             <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
-                <h2 class="content-head content-head-ribbon"><a href="blog/2020.03.23_KMS-2020.html" title="Kreismusikfest 2020">Kreismusikfest 2020</a></h2>
+                <h2 class="content-head content-head-ribbon"><a href="blog/2020.03.23_KMS-2020.html"
+                        title="Kreismusikfest 2020">Kreismusikfest 2020</a></h2>
 
                 <p>
-                    Vom 18. bis 20.09.2020 wird ein Kreismusikfest in Heustreu stattfinden.</br>
-                    Das Programm folgt in Kürze.</br>
-                    Wir laden heute schon alle ein, uns bei unserem Kreismusikfest zu besuchen!</br>
+                    Vom 18. bis 20.09.2020 wird unser Kreismusikfest in Heustreu stattfinden.</p>
+                <p>Wir freuen uns auf ein Wochenende mit Spinnich, Kaufmannsware, Uli Kiesel, der Dead Horse Big Band,
+                    Begaxel, dem Röhrenden Fichtenbullen und den Hergolshäuser Musikanten.</p>
+                <p> Wir laden heute schon alle ein, mit uns das 50-jährige Jubiläum des Vereins zu feiern!</br>
                 </p>
             </div>
         </div>
@@ -182,21 +184,21 @@
                     <form id="contact" class="pure-form pure-form-stacked">
                         <fieldset>
                             <!-- <label for="name">Name</label> -->
-                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name" class="validate" 
-         data-validate="required">
+                            <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name"
+                                class="validate" data-validate="required">
                             <!-- <label for="email">E-Mail-Adresse</label> -->
-                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse" class="validate" 
-         data-validate="required,email">
+                            <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse"
+                                class="validate" data-validate="required,email">
                             <!-- <label for="email" hidden>Ihre E-Mail-Adresse</label> -->
-                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" class="validate" 
-         data-validate="required">
+                            <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" class="validate"
+                                data-validate="required">
                             <!-- <label for="password">Your Password</label>
                             <input id="password" type="password" placeholder="Your Password"> -->
                             <textarea id="message" placeholder="Nachricht" aria-label="Nachricht"
                                 style="width:100%;height:9em;"></textarea>
                             <label for="regulations" style="font-weight: normal; margin-bottom: 1em;">
-                                <input id="regulations" type="checkbox" style="width: auto; margin-bottom: 0em;" class="validate" 
-         data-validate="required">&ensp;Die <a href="/datenschutz.html"
+                                <input id="regulations" type="checkbox" style="width: auto; margin-bottom: 0em;"
+                                    class="validate" data-validate="required">&ensp;Die <a href="/datenschutz.html"
                                     title="Datenschutz - MV Heustreu">Daten&shy;schutz&shy;bestim&shy;mungen</a> habe
                                 ich zur Kenntnis genommen
                                 und akzeptiere sie.</label>
@@ -207,35 +209,35 @@
                     </form>
                     <script>
                         //const contact = document.getElementById('contact');
-			const send = document.getElementById('send');
-                      
-			validation.init("#contact");
+                        const send = document.getElementById('send');
+
+                        validation.init("#contact");
 
                         send.addEventListener('click', function (event) {
-                            
-			    if(validation.validate()){
 
-			    var xhr = new XMLHttpRequest();
-                            xhr.open('PUT', '/php/contact.php');
-                            xhr.setRequestHeader('Content-Type', 'application/json');
-                            xhr.onload = function () {
-                                if (xhr.status === 200) {
-                                    if (xhr.responseText == "success") {
-                                        alert("Ihre Nachricht wurde erfolgreich übermittelt.");
-                                    } else {
-                                        alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
+                            if (validation.validate()) {
+
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('PUT', '/php/contact.php');
+                                xhr.setRequestHeader('Content-Type', 'application/json');
+                                xhr.onload = function () {
+                                    if (xhr.status === 200) {
+                                        if (xhr.responseText == "success") {
+                                            alert("Ihre Nachricht wurde erfolgreich übermittelt.");
+                                        } else {
+                                            alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
+                                        }
                                     }
-                                }
-                            };
-                            xhr.send(JSON.stringify({
-                                name: document.getElementById('name').value,
-                                mail: document.getElementById('email').value,
-                                subject: document.getElementById('subject').value,
-                                message: document.getElementById('message').value
-                            }));
-                            document.getElementById("contact").reset();
-                            event.preventDefault();
-}
+                                };
+                                xhr.send(JSON.stringify({
+                                    name: document.getElementById('name').value,
+                                    mail: document.getElementById('email').value,
+                                    subject: document.getElementById('subject').value,
+                                    message: document.getElementById('message').value
+                                }));
+                                document.getElementById("contact").reset();
+                                event.preventDefault();
+                            }
                         });
                     </script>
                 </div>

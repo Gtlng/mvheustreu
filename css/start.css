@@ -151,7 +151,11 @@ h3.content-subhead {
     font-size: 15px;
 }
 
-.ribbon a{
+.ribbon p {
+    letter-spacing: .03em;
+}
+
+.ribbon a {
 color: white;
 }
 
