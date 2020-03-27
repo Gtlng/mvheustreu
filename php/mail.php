@@ -43,7 +43,7 @@ try {
     // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
     // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->isHTML(false);                                  // Set email format to HTML
     $mail->Subject = $data->subject;
     $mail->Body    = $data->body;
     $mail->AltBody = $data->altbody;
