@@ -10,50 +10,54 @@ require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
 
-function sendMail($json){
+function sendMail($json)
+{
 
-$data = json_decode($json);
+    $data = json_decode($json);
 
-// Instantiation and passing `true` enables exceptions
-$mail = new PHPMailer(true);
+    // Instantiation and passing `true` enables exceptions
+    $mail = new PHPMailer(true);
 
-try {
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-    $mail->SMTPDebug = 0;
-    $mail->isSMTP();						// Enable SMTP
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
-    $mail->CharSet = 'UTF-8';
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+        $mail->SMTPDebug = 0;
+        $mail->isSMTP();                        // Enable SMTP
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
+        $mail->CharSet = 'UTF-8';
 
-    //get login information from file
-    require ('../configs/credentials_mail.php');
+        //get login information from file
+        require('../configs/credentials_mail.php');
 
-    //Recipients
-    $mail->setFrom('test@gtlng.de', 'Kontaktformular MV-Webseite');
-    
-    foreach($data->to as $recipient){
-    	$mail->addAddress($recipient->mail, $recipient->name);
+        //Recipients
+        $mail->setFrom('test@gtlng.de', 'Kontaktformular MV-Webseite');
+
+        foreach ($data->to as $recipient) {
+            $mail->addAddress($recipient->mail, $recipient->name);
+        }
+        // $mail->addAddress('ellen@example.com');               // Name is optional
+        $mail->addReplyTo($data->from, $data->fromname);
+        // $mail->addCC('cc@example.com');
+
+        foreach ($data->bcc as $recipient) {
+            $mail->addBCC($recipient->mail, $recipient->name);
+        }
+
+        // Attachments
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+        // Content
+        $mail->isHTML(false);                                  // Set email format to HTML
+        $mail->Subject = $data->subject;
+        $mail->Body    = $data->body;
+        $mail->AltBody = $data->altbody;
+
+        if (empty($mail->Body)) $mail->Body = ' ';
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        return false;
     }
-    // $mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo($data->from, $data->fromname);
-    // $mail->addCC('cc@example.com');
-    // $mail->addBCC('bcc@example.com');
-
-    // Attachments
-    // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-    // Content
-    $mail->isHTML(false);                                  // Set email format to HTML
-    $mail->Subject = $data->subject;
-    $mail->Body    = $data->body;
-    $mail->AltBody = $data->altbody;
-
-    if(empty($mail->Body)) $mail->Body = ' ';
-
-    $mail->send();
-    return true;
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    return false;
-}
 }

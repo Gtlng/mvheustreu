@@ -20,8 +20,11 @@ $json->subject = $subject;
 $json->altbody = "";
 $json->body = "Neue Nachricht vom Kontaktformular der Webseite.\n\nAbsender: ".$name." (".$mailadd.")\nBetreff: ".$subject."\n\n".$message;
 $json->to = array(
-		array('mail' => 'johannes.guetling@t-online.de', 'name' => 'Johannes Gütling'),
-		array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Gütling')
+    array('mail' => 'johannes.guetling@t-online.de', 'name' => 'Johannes Gütling'),
+    array('mail' => 'johannes.guetling@outlook.com', 'name' => 'Johannes Gütling')
+);
+$json->bcc = array(
+  array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Gütling')
 );
 
 try {
@@ -52,5 +55,3 @@ if($count !== false){
 		
 }
 }
-
-?>
