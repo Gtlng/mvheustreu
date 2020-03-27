@@ -1,2 +1,2 @@
 # mvheustreu
-Geplante Webseite des Musik- und Heimatvereins Heustreu. Im Moment noch eine große Baustelle.
+Webseite des Musik- und Heimatvereins Heustreu. Das Ergebnis ist sichtbar unter: www.mv-heustreu.de

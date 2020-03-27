@@ -29,7 +29,7 @@ function sendMail($json)
         require('../configs/credentials_mail.php');
 
         //Recipients
-        $mail->setFrom('test@gtlng.de', 'Kontaktformular MV-Webseite');
+        $mail->setFrom('web@mv-heustreu.de', 'Kontaktformular Webseite');
 
         foreach ($data->to as $recipient) {
             $mail->addAddress($recipient->mail, $recipient->name);
