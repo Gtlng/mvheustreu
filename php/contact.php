@@ -20,7 +20,7 @@ $json->subject = $subject;
 $json->altbody = "";
 $json->body = "Neue Nachricht vom Kontaktformular der Homepage. Absender: ".$name." (".$mailadd."): </br>".$message;
 $json->to = array(
-		array('mail' => 'gabe.hartmann@gmail.com', 'name' => 'Gabriel Hartmann'),
+		array('mail' => 'johannes.guetling@t-online.de', 'name' => 'Johannes Gütling'),
 		array('mail' => 'johannes@gtlng.de', 'name' => 'Johannes Gütling')
 );
 
