@@ -28,7 +28,7 @@ try {
     require ('../configs/credentials_mail.php');
 
     //Recipients
-    $mail->setFrom('test@gtlng.de', 'Webmailer');
+    $mail->setFrom('test@gtlng.de', 'Kontaktformular MV-Webseite');
     
     foreach($data->to as $recipient){
     	$mail->addAddress($recipient->mail, $recipient->name);
