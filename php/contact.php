@@ -21,7 +21,7 @@ if ($input) {
   $json->body = "Neue Nachricht vom Kontaktformular der Webseite.\n\nAbsender: " . $name . " (" . $mailadd . ")\nBetreff: " . $subject . "\n\n" . $message;
   $json->to = array(
     array('mail' => 'vorstand@mv-heustreu.de', 'name' => 'Vorstand MV Heustreu'),
-    array('mail' => 'manger_lorenz@web.de', 'name' => 'Lorenz Manger')
+//  array('mail' => 'manger_lorenz@web.de', 'name' => 'Lorenz Manger')
   );
   $json->bcc = array(
     array('mail' => 'admin@mv-heustreu.de', 'name' => 'Admin MV Heustreu')
