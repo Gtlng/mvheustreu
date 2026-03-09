@@ -313,8 +313,8 @@
                         titleEl.innerHTML = post.title;
                         var title = titleEl.textContent || titleEl.innerText || post.title;
 
-                        html += '<div class="ribbon l-box-lrg pure-g" style="padding-bottom: 0; padding-top: 1.3em;">';
-                        html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding: 2em 1em 0 1em;">';
+                        html += '<div class="ribbon l-box-lrg pure-g" style="padding-bottom: 1.3em; padding-top: 1.3em;">';
+                        html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding-top: 2em; padding-bottom: 0;">';
                         html += '    <img style="max-height: 500px;" alt="' + title.replace(/"/g, '&quot;') + '"';
                         html += '         class="pure-img-responsive" src="' + imgSrc + '">';
                         html += '  </div>';
@@ -327,15 +327,14 @@
                         html += '    </h2>';
                         html += '    <div class="post-content">' + post.content + '</div>';
                         html += '  </div>';
-                        html += '</div>';
+
                     });
-                    html += '<div class="ribbon l-box-lrg pure-g" style="padding: 0;">';
-                    html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding: 0 1em 0 1em;">';
+                    html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding-top: 0; padding-bottom: 0;">';
                     html += '  </div>';
-                    html += '  <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5" style="padding: 0 0 1.3em 0; margin: 1.3em 0 0 0; letter-spacing: 0.03em; color: white;">';
+                    html += '  <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5" style="margin-top: 1.3em; letter-spacing: 0.03em; color: white;">';
                     html += '    Mehr Aktuelles finden Sie auf <a href="https://www.heimat-info.de/gemeinden/heustreu/organisationen/musik--und-heimatverein-heustreu-1970-e-v/beitraege"';
                     html += '       target="_blank" rel="noopener noreferrer"';
-                    html += '       style="font-weight: bold; color: inherit;">Heimat-Info</a> und <a href="https://www.instagram.com/mv_heustreu_/"';
+                    html += '       style="font-weight: bold; color: inherit;">Heimat&#8209;Info</a> und <a href="https://www.instagram.com/mv_heustreu_/"';
                     html += '       target="_blank" rel="noopener noreferrer"';
                     html += '       style="font-weight: bold; color: inherit;">Instagram</a>.';
                     html += '</div>';
