@@ -17,6 +17,23 @@ a {
     color: #1f8dd6
 }
 
+/* Heimat-Info post content styling */
+#news-ribbons .post-content p {
+    margin-bottom: 0.5em;
+}
+#news-ribbons .post-content ol,
+#news-ribbons .post-content ul {
+    text-align: initial;
+    margin-left: 1.5em;
+}
+#news-ribbons .post-content a {
+    /* color: #1f8dd6;  */
+    text-decoration: underline !important;
+}
+#news-ribbons .ribbon {
+    margin-bottom: 0;
+}
+
 a:hover, a:focus {
     text-decoration: underline;
 }
