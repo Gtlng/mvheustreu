@@ -204,17 +204,15 @@
                     <h3 style="margin-bottom:.3em;">Kontaktformular</h3>
                     <form id="contact" class="pure-form pure-form-stacked">
                         <fieldset>
-                            <!-- <label for="name">Name</label> -->
                             <input id="name" type="text" aria-label="Vor- und Nachname" placeholder="Name"
                                 class="validate" data-validate="required">
-                            <!-- <label for="email">E-Mail-Adresse</label> -->
                             <input id="email" type="email" aria-label="E-Mail-Adresse" placeholder="E-Mail-Adresse"
                                 class="validate" data-validate="required,email">
-                            <!-- <label for="email" hidden>Ihre E-Mail-Adresse</label> -->
+                            <!-- Honeypot field - invisible to users -->
+                            <input id="website" type="text" name="website" style="display:none;" tabindex="-1"
+                                autocomplete="off" aria-hidden="true">
                             <input id="subject" type="text" aria-label="Betreff" placeholder="Betreff" class="validate"
                                 data-validate="required">
-                            <!-- <label for="password">Your Password</label>
-                            <input id="password" type="password" placeholder="Your Password"> -->
                             <textarea id="message" placeholder="Nachricht" aria-label="Nachricht"
                                 style="width:100%;height:9em;"></textarea>
                             <label for="regulations" style="font-weight: normal; margin-bottom: 1em;">
@@ -222,41 +220,54 @@
                                     class="validate" data-validate="required">&ensp;Die <a href="/datenschutz.html"
                                     title="Datenschutz - MV Heustreu">Daten&shy;schutz&shy;bestim&shy;mungen</a> habe
                                 ich zur Kenntnis genommen und akzeptiere sie.</label>
-
-
                             <button id="send" class="pure-button">Senden</button>
                         </fieldset>
                     </form>
                     <script>
-                        //const contact = document.getElementById('contact');
                         const send = document.getElementById('send');
+                        const formLoadTime = Date.now();
 
                         validation.init("#contact");
 
                         send.addEventListener('click', function (event) {
+                            event.preventDefault();
+
+                            // Time check - reject if submitted in under 3 seconds
+                            if (Date.now() - formLoadTime < 3000) {
+                                return;
+                            }
+
+                            // Honeypot check
+                            if (document.getElementById('website').value !== '') {
+                                return;
+                            }
 
                             if (validation.validate()) {
-
                                 var xhr = new XMLHttpRequest();
                                 xhr.open('PUT', '/php/contact.php');
                                 xhr.setRequestHeader('Content-Type', 'application/json');
                                 xhr.onload = function () {
                                     if (xhr.status === 200) {
-                                        if (xhr.responseText == "success") {
+                                        if (xhr.responseText === "success") {
                                             alert("Ihre Nachricht wurde erfolgreich übermittelt.");
+                                            document.getElementById("contact").reset();
                                         } else {
                                             alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
                                         }
+                                    } else {
+                                        alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
                                     }
+                                };
+                                xhr.onerror = function () {
+                                    alert("Beim Übermitteln Ihrer Nachricht ist ein Fehler aufgetreten.");
                                 };
                                 xhr.send(JSON.stringify({
                                     name: document.getElementById('name').value,
                                     mail: document.getElementById('email').value,
                                     subject: document.getElementById('subject').value,
-                                    message: document.getElementById('message').value
+                                    message: document.getElementById('message').value,
+                                    website: document.getElementById('website').value
                                 }));
-                                document.getElementById("contact").reset();
-                                event.preventDefault();
                             }
                         });
                     </script>

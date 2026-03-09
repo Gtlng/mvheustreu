@@ -4,15 +4,32 @@ require_once "../configs/credentials_db.php";
 
 $input = json_decode(file_get_contents('php://input'));
 
-//form fields from webpage contact form
 if ($input) {
 
-  $name = $input->name;
-  $mailadd = $input->mail;
-  $subject = $input->subject;
-  $message = $input->message;
+  // Honeypot check (server-side!)
+  if (!empty($input->website)) {
+    echo "success"; // pretend it worked so bots don't retry
+    exit;
+  }
 
-  //build json for mail function
+  // Sanitize inputs
+  $name = trim($input->name ?? '');
+  $mailadd = trim($input->mail ?? '');
+  $subject = trim($input->subject ?? '');
+  $message = trim($input->message ?? '');
+
+  // Basic validation
+  if (empty($name) || empty($mailadd) || empty($subject) || empty($message)) {
+    echo "Validation failed";
+    exit;
+  }
+
+  if (!filter_var($mailadd, FILTER_VALIDATE_EMAIL)) {
+    echo "Invalid email";
+    exit;
+  }
+
+  // Build json for mail function
   $json = new stdClass();
   $json->from = $mailadd;
   $json->fromname = $name;
@@ -21,34 +38,37 @@ if ($input) {
   $json->body = "Neue Nachricht vom Kontaktformular der Webseite.\n\nAbsender: " . $name . " (" . $mailadd . ")\nBetreff: " . $subject . "\n\n" . $message;
   $json->to = array(
     array('mail' => 'vorstand@mv-heustreu.de', 'name' => 'Vorstand MV Heustreu'),
-//  array('mail' => 'manger_lorenz@web.de', 'name' => 'Lorenz Manger')
   );
   $json->bcc = array(
     array('mail' => 'admin@mv-heustreu.de', 'name' => 'Admin MV Heustreu')
   );
 
   try {
-    // Connect and create the PDO object
     $conn = new PDO("mysql:host=$hostdb; dbname=$namedb", $userdb, $passdb);
-    $conn->exec("SET CHARACTER SET utf8");      // Sets encoding UTF-8
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->exec("SET CHARACTER SET utf8");
 
-    // Define an insert query
-    $sql = "INSERT INTO `contact` (`name`, `mail`, `subject`, `message`)
-    VALUES
-      ('$name', '$mailadd', '$subject', '$message')";
-    $count = $conn->exec($sql);
+    // Prepared statement to prevent SQL injection!
+    $sql = "INSERT INTO `contact` (`name`, `mail`, `subject`, `message`) VALUES (:name, :mail, :subject, :message)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+      ':name' => $name,
+      ':mail' => $mailadd,
+      ':subject' => $subject,
+      ':message' => $message
+    ]);
 
-    $conn = null;        // Disconnect
+    $conn = null;
   } catch (PDOException $e) {
-    echo $e->getMessage();
+    // Don't expose DB errors to the client
+    error_log("Contact form DB error: " . $e->getMessage());
+    echo "Database error";
+    exit;
   }
 
-  // If data added ($count not false) displays the number of rows added
-  if ($count !== false) {
-    if (sendMail(json_encode($json))) {
-      echo "success";
-    } else {
-      echo "Mail send failed";
-    }
+  if (sendMail(json_encode($json))) {
+    echo "success";
+  } else {
+    echo "Mail send failed";
   }
 }
