@@ -29,6 +29,23 @@ if ($input) {
     exit;
   }
 
+  // Spam filter: too many dots in email local part (e.g. r.i.w.u.l.u.w.e@gmail.com)
+  $emailLocal = explode('@', $mailadd)[0];
+  $dotRatio = substr_count($emailLocal, '.') / max(strlen($emailLocal), 1);
+  if ($dotRatio > 0.3) {
+    error_log("Spam detected (dotty email): " . $mailadd);
+    echo "success"; // fake success so bots don't retry
+    exit;
+  }
+
+  // Spam filter: no punctuation and no spaces at all in message, name, or subject
+  $combined = $name . $subject . $message;
+  if (!preg_match('/[ .,:;!?\'"\-\(\)]/', $combined)) {
+    error_log("Spam detected (no punctuation): " . $mailadd);
+    echo "success";
+    exit;
+  }
+
   // Build json for mail function
   $json = new stdClass();
   $json->from = $mailadd;
