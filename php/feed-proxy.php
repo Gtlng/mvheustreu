@@ -76,6 +76,7 @@ if (preg_match('/<script[^>]*id="__NUXT_DATA__"[^>]*>(.*?)<\/script>/s', $html, 
                     // Resolve content (full HTML)
                     $post['content'] = isset($nuxtData[$obj['content']]) ? $nuxtData[$obj['content']] : '';
                     $post['content'] = preg_replace('/<p>\s*(&nbsp;|\xC2\xA0)?\s*<\/p>/i', '', $post['content']);
+                    $post['content'] = preg_replace('/<p\s+style="[^"]*">/i', '<p>', $post['content']);
                     
                     // Resolve content preview
                     if (isset($obj['contentPreview'])) {
