@@ -25,8 +25,8 @@ $maxCount = 10;
 
 // --- Parameters ---
 $count = isset($_GET['count']) ? min(max((int)$_GET['count'], 1), $maxCount) : $defaultCount;
-$noCache = isset($_GET['nocache']) && $_GET['nocache'] == '1';
 $debug = isset($_GET['debug']) && $_GET['debug'] == '1';
+$noCache = (isset($_GET['nocache']) && $_GET['nocache'] == '1') || $debug;
 $dedupeStats = [
     'removedEventDuplicatesByTitle' => 0
 ];
