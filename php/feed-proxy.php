@@ -10,6 +10,12 @@
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
+function normalizeTitle($title) {
+    $title = trim((string)$title);
+    $title = preg_replace('/\s+/u', ' ', $title);
+    return strtolower($title);
+}
+
 // --- Configuration ---
 $feedUrl = 'https://www.heimat-info.de/embeddings/posts/v1/?pt=Default&pt=Event&pt=Rss&ct=f8618426-5859-4654-a3a4-87487b8954d3';
 $cacheFile = __DIR__ . '/feed-cache.json';
@@ -20,6 +26,10 @@ $maxCount = 10;
 // --- Parameters ---
 $count = isset($_GET['count']) ? min(max((int)$_GET['count'], 1), $maxCount) : $defaultCount;
 $noCache = isset($_GET['nocache']) && $_GET['nocache'] == '1';
+$debug = isset($_GET['debug']) && $_GET['debug'] == '1';
+$dedupeStats = [
+    'removedEventDuplicatesByTitle' => 0
+];
 
 // --- Cache check ---
 if (!$noCache && file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTTL) {
@@ -127,7 +137,28 @@ if (preg_match('/<script[^>]*id="__NUXT_DATA__"[^>]*>(.*?)<\/script>/s', $html, 
             }
         }
         
-        $posts = $allPosts;
+        // Prefer news/default posts over event posts when titles are the same.
+        // Some feed items can appear once as news and once as event.
+        $titlesWithNonEvent = [];
+        foreach ($allPosts as $post) {
+            $normalizedTitle = normalizeTitle($post['title'] ?? '');
+            if ($normalizedTitle === '') {
+                continue;
+            }
+            if (($post['type'] ?? '') !== 'Event') {
+                $titlesWithNonEvent[$normalizedTitle] = true;
+            }
+        }
+
+        $posts = [];
+        foreach ($allPosts as $post) {
+            $normalizedTitle = normalizeTitle($post['title'] ?? '');
+            if (($post['type'] ?? '') === 'Event' && isset($titlesWithNonEvent[$normalizedTitle])) {
+                $dedupeStats['removedEventDuplicatesByTitle']++;
+                continue;
+            }
+            $posts[] = $post;
+        }
     }
 }
 
@@ -137,6 +168,10 @@ $response = [
     'fetchedAt' => date('c'),
     'cached' => false
 ];
+
+if ($debug) {
+    $response['debug'] = $dedupeStats;
+}
 
 // --- Write cache (all posts) ---
 file_put_contents($cacheFile, json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
