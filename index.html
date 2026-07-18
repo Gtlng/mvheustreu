@@ -515,7 +515,7 @@
                     var html = '';
                     data.posts.forEach(function (post) {
                         var galleryImages = (post.images && post.images.length > 0)
-                            ? post.images.slice()
+                            ? post.images.slice().reverse()
                             : [FALLBACK_IMAGE];
 
                         // Clean up title: decode HTML entities
