@@ -25,6 +25,90 @@
     <link rel="stylesheet" href="css/glightbox-3.2.0/glightbox.min.css">
     <link rel="stylesheet" href="css/glightbox-3.2.0/glight-custom.css">
     <script src="js/glightbox-3.2.0/glightbox.min.js"></script>
+    <style>
+        .news-preview-carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .news-preview-track {
+            display: flex;
+            transition: transform 0.28s ease;
+            touch-action: pan-y;
+            will-change: transform;
+        }
+
+        .news-preview-slide {
+            flex: 0 0 100%;
+            max-width: 100%;
+            display: block;
+        }
+
+        .news-preview-slide img {
+            cursor: zoom-in;
+            width: 98%;
+            object-fit: contain;
+        }
+
+        .news-preview-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.45em;
+            margin-top: 0.6em;
+        }
+
+        .news-preview-dot {
+            width: 9px;
+            height: 9px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.45);
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .news-preview-dot.is-active {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .news-preview-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2em;
+            height: 2em;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            font-size: 1.15em;
+        }
+
+        .news-preview-arrow:hover {
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .news-preview-arrow.prev {
+            left: 0.5em;
+        }
+
+        .news-preview-arrow.next {
+            right: 0.5em;
+        }
+
+        @media (min-width: 980px) {
+            .news-preview-carousel.has-multiple .news-preview-arrow {
+                display: inline-flex;
+            }
+        }
+    </style>
 
 </head>
 
@@ -310,6 +394,119 @@
                 return escapeHtml(value).replace(/"/g, '&quot;');
             }
 
+            function initNewsPreviewCarousels() {
+                var carousels = document.querySelectorAll('.news-preview-carousel');
+                carousels.forEach(function (carousel) {
+                    var track = carousel.querySelector('.news-preview-track');
+                    var slides = carousel.querySelectorAll('.news-preview-slide');
+                    var dots = carousel.querySelectorAll('.news-preview-dot');
+                    var prevButton = carousel.querySelector('.news-preview-arrow.prev');
+                    var nextButton = carousel.querySelector('.news-preview-arrow.next');
+                    var total = slides.length;
+
+                    if (!track || total <= 1) {
+                        return;
+                    }
+
+                    var currentIndex = 0;
+                    var touchStartX = null;
+                    var touchStartY = null;
+                    var swipeDeltaX = 0;
+                    var swipeDeltaY = 0;
+                    var swiped = false;
+
+                    function updateCarousel() {
+                        track.style.transform = 'translate3d(' + (-currentIndex * 100) + '%, 0, 0)';
+                        dots.forEach(function (dot, index) {
+                            if (index === currentIndex) {
+                                dot.classList.add('is-active');
+                            } else {
+                                dot.classList.remove('is-active');
+                            }
+                        });
+                    }
+
+                    function goTo(index) {
+                        if (index < 0) {
+                            currentIndex = total - 1;
+                        } else if (index >= total) {
+                            currentIndex = 0;
+                        } else {
+                            currentIndex = index;
+                        }
+                        updateCarousel();
+                    }
+
+                    prevButton.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        goTo(currentIndex - 1);
+                    });
+
+                    nextButton.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        goTo(currentIndex + 1);
+                    });
+
+                    dots.forEach(function (dot) {
+                        dot.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            var targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+                            if (!isNaN(targetIndex)) {
+                                goTo(targetIndex);
+                            }
+                        });
+                    });
+
+                    track.addEventListener('touchstart', function (event) {
+                        if (!event.touches || event.touches.length === 0) {
+                            return;
+                        }
+                        touchStartX = event.touches[0].clientX;
+                        touchStartY = event.touches[0].clientY;
+                        swipeDeltaX = 0;
+                        swipeDeltaY = 0;
+                        swiped = false;
+                    }, { passive: true });
+
+                    track.addEventListener('touchmove', function (event) {
+                        if (touchStartX === null || !event.touches || event.touches.length === 0) {
+                            return;
+                        }
+                        swipeDeltaX = event.touches[0].clientX - touchStartX;
+                        swipeDeltaY = event.touches[0].clientY - touchStartY;
+                    }, { passive: true });
+
+                    track.addEventListener('touchend', function () {
+                        if (touchStartX === null) {
+                            return;
+                        }
+                        var absX = Math.abs(swipeDeltaX);
+                        var absY = Math.abs(swipeDeltaY);
+                        if (absX > 40 && absX > absY) {
+                            swiped = true;
+                            if (swipeDeltaX < 0) {
+                                goTo(currentIndex + 1);
+                            } else {
+                                goTo(currentIndex - 1);
+                            }
+                        }
+                        touchStartX = null;
+                        touchStartY = null;
+                    });
+
+                    slides.forEach(function (slide) {
+                        slide.addEventListener('click', function (event) {
+                            if (swiped) {
+                                event.preventDefault();
+                                swiped = false;
+                            }
+                        });
+                    });
+
+                    updateCarousel();
+                });
+            }
+
             fetch('php/feed-proxy.php?count=' + NEWS_COUNT)
                 .then(function (res) { return res.json(); })
                 .then(function (data) {
@@ -320,7 +517,6 @@
                         var galleryImages = (post.images && post.images.length > 0)
                             ? post.images.slice()
                             : [FALLBACK_IMAGE];
-                        var imgSrc = galleryImages[0];
 
                         // Clean up title: decode HTML entities
                         var titleEl = document.createElement('div');
@@ -331,13 +527,24 @@
 
                         html += '<div class="ribbon l-box-lrg pure-g" style="padding-bottom: 1.3em; padding-top: 1.3em;">';
                         html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding-top: 2em; padding-bottom: 0;">';
-                        html += '    <a href="' + escapeAttr(imgSrc) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:;">';
-                        html += '      <img style="max-height: 500px; cursor: zoom-in;" alt="' + escapedTitle + '"';
-                        html += '           class="pure-img-responsive" src="' + escapeAttr(imgSrc) + '">';
-                        html += '    </a>';
-                        for (var i = 1; i < galleryImages.length; i++) {
-                            html += '    <a href="' + escapeAttr(galleryImages[i]) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:;" style="display:none;" aria-hidden="true" tabindex="-1"></a>';
+                        html += '    <div class="news-preview-carousel' + (galleryImages.length > 1 ? ' has-multiple' : '') + '">';
+                        html += '      <div class="news-preview-track">';
+                        for (var i = 0; i < galleryImages.length; i++) {
+                            html += '        <a href="' + escapeAttr(galleryImages[i]) + '" class="news-glightbox news-preview-slide" data-gallery="' + galleryId + '" data-glightbox="title:;">';
+                            html += '          <img style="max-height: 500px;" alt="' + escapedTitle + '" class="pure-img-responsive" src="' + escapeAttr(galleryImages[i]) + '">';
+                            html += '        </a>';
                         }
+                        html += '      </div>';
+                        if (galleryImages.length > 1) {
+                            html += '      <button class="news-preview-arrow prev" type="button" aria-label="Vorheriges Bild">&#8249;</button>';
+                            html += '      <button class="news-preview-arrow next" type="button" aria-label="Nächstes Bild">&#8250;</button>';
+                            html += '      <div class="news-preview-dots">';
+                            for (var dotIndex = 0; dotIndex < galleryImages.length; dotIndex++) {
+                                html += '        <button class="news-preview-dot' + (dotIndex === 0 ? ' is-active' : '') + '" type="button" data-index="' + dotIndex + '" aria-label="Bild ' + (dotIndex + 1) + ' anzeigen"></button>';
+                            }
+                            html += '      </div>';
+                        }
+                        html += '    </div>';
                         html += '  </div>';
                         html += '  <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5" style="max-width: 55em;">';
                         html += '    <h2 class="content-head content-head-ribbon" style="margin-top: 1.3em;">';
@@ -363,6 +570,8 @@
                     html += '</div>';
                     html += '</div>';
                     container.innerHTML = html;
+
+                    initNewsPreviewCarousels();
 
                     GLightbox({
                         selector: '.news-glightbox',
