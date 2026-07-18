@@ -318,7 +318,7 @@
                     var html = '';
                     data.posts.forEach(function (post) {
                         var galleryImages = (post.images && post.images.length > 0)
-                            ? post.images.slice().reverse()
+                            ? post.images.slice()
                             : [FALLBACK_IMAGE];
                         var imgSrc = galleryImages[0];
 
@@ -331,12 +331,12 @@
 
                         html += '<div class="ribbon l-box-lrg pure-g" style="padding-bottom: 1.3em; padding-top: 1.3em;">';
                         html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding-top: 2em; padding-bottom: 0;">';
-                        html += '    <a href="' + escapeAttr(imgSrc) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:' + escapedTitle + ';">';
-                        html += '      <img style="max-height: 500px;" alt="' + escapedTitle + '"';
+                        html += '    <a href="' + escapeAttr(imgSrc) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:;">';
+                        html += '      <img style="max-height: 500px; cursor: zoom-in;" alt="' + escapedTitle + '"';
                         html += '           class="pure-img-responsive" src="' + escapeAttr(imgSrc) + '">';
                         html += '    </a>';
                         for (var i = 1; i < galleryImages.length; i++) {
-                            html += '    <a href="' + escapeAttr(galleryImages[i]) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:' + escapedTitle + ';" style="display:none;" aria-hidden="true" tabindex="-1"></a>';
+                            html += '    <a href="' + escapeAttr(galleryImages[i]) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:;" style="display:none;" aria-hidden="true" tabindex="-1"></a>';
                         }
                         html += '  </div>';
                         html += '  <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5" style="max-width: 55em;">';
