@@ -22,6 +22,9 @@
     <script src="js/main.js"></script>
     <link href="css/validation.min.css" rel="stylesheet">
     <script src="js/validation.min.js"></script>
+    <link rel="stylesheet" href="css/glightbox-3.2.0/glightbox.min.css">
+    <link rel="stylesheet" href="css/glightbox-3.2.0/glight-custom.css">
+    <script src="js/glightbox-3.2.0/glightbox.min.js"></script>
 
 </head>
 
@@ -296,6 +299,17 @@
             var container = document.getElementById('news-ribbons');
             if (!container) return;
 
+            function escapeHtml(value) {
+                return String(value)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+            }
+
+            function escapeAttr(value) {
+                return escapeHtml(value).replace(/"/g, '&quot;');
+            }
+
             fetch('php/feed-proxy.php?count=' + NEWS_COUNT)
                 .then(function (res) { return res.json(); })
                 .then(function (data) {
@@ -303,25 +317,33 @@
 
                     var html = '';
                     data.posts.forEach(function (post) {
-                        var imgSrc = (post.images && post.images.length > 0)
-                            ? post.images[0]
-                            : FALLBACK_IMAGE;
+                        var galleryImages = (post.images && post.images.length > 0)
+                            ? post.images.slice().reverse()
+                            : [FALLBACK_IMAGE];
+                        var imgSrc = galleryImages[0];
 
                         // Clean up title: decode HTML entities
                         var titleEl = document.createElement('div');
                         titleEl.innerHTML = post.title;
                         var title = titleEl.textContent || titleEl.innerText || post.title;
+                        var escapedTitle = escapeAttr(title);
+                        var galleryId = 'news-gallery-' + escapeAttr(post.id || Math.random().toString(36).slice(2));
 
                         html += '<div class="ribbon l-box-lrg pure-g" style="padding-bottom: 1.3em; padding-top: 1.3em;">';
                         html += '  <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5" style="padding-top: 2em; padding-bottom: 0;">';
-                        html += '    <img style="max-height: 500px;" alt="' + title.replace(/"/g, '&quot;') + '"';
-                        html += '         class="pure-img-responsive" src="' + imgSrc + '">';
+                        html += '    <a href="' + escapeAttr(imgSrc) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:' + escapedTitle + ';">';
+                        html += '      <img style="max-height: 500px;" alt="' + escapedTitle + '"';
+                        html += '           class="pure-img-responsive" src="' + escapeAttr(imgSrc) + '">';
+                        html += '    </a>';
+                        for (var i = 1; i < galleryImages.length; i++) {
+                            html += '    <a href="' + escapeAttr(galleryImages[i]) + '" class="news-glightbox" data-gallery="' + galleryId + '" data-glightbox="title:' + escapedTitle + ';" style="display:none;" aria-hidden="true" tabindex="-1"></a>';
+                        }
                         html += '  </div>';
                         html += '  <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5" style="max-width: 55em;">';
                         html += '    <h2 class="content-head content-head-ribbon" style="margin-top: 1.3em;">';
-                        html += '      <a href="' + post.link + '" target="_blank" rel="noopener noreferrer" ';
+                        html += '      <a href="' + escapeAttr(post.link) + '" target="_blank" rel="noopener noreferrer" ';
                         html += '         style="">';
-                        html += '        ' + title;
+                        html += '        ' + escapeHtml(title);
                         html += '      </a>';
                         html += '    </h2>';
                         html += '    <div class="post-content">' + post.content + '</div>';
@@ -341,6 +363,14 @@
                     html += '</div>';
                     html += '</div>';
                     container.innerHTML = html;
+
+                    GLightbox({
+                        selector: '.news-glightbox',
+                        touchNavigation: true,
+                        loop: true,
+                        moreText: 'Mehr anzeigen',
+                        moreLength: 100
+                    });
                 })
                 .catch(function (err) {
                     console.warn('Heimat-Info Feed konnte nicht geladen werden:', err);
